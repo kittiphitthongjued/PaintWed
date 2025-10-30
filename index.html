@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="th">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>เครื่องคำนวณน้ำหนักมาตรฐาน</title>
+	<link rel="stylesheet" href="styles.css">
+	<!-- เพิ่มไอคอนฟอนต์จาก Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>โปรแกรมคำนวณหาค่าดัชนีมวลกาย (BMI)</h1>
+        </div>
+    </header>
+
+    <main class="container">
+		<section class="feature-icons" aria-label="ไอคอนช่วยแนะนำ">
+			<a class="icon-card icon-link" href="exercise.html" aria-label="ออกกำลังกาย">
+				<img src="https://png.pngtree.com/png-clipart/20190604/original/pngtree-run-png-image_1793827.jpg" alt="ออกกำลังกาย" class="icon-image">
+				<h3>ออกกำลังกาย</h3>
+			</a>
+
+			<a class="icon-card icon-link" href="gain.html" aria-label="เพิ่มน้ำหนัก">
+				<img src="data:image/jpeg;base64,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" alt="เพิ่มน้ำหนัก" class="icon-image">
+				<h3>เพิ่มน้ำหนัก</h3>
+			</a>
+
+			<a class="icon-card icon-link" href="lose.html" aria-label="ลดน้ำหนัก">
+				<img src="data:image/jpeg;base64,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" alt="ลดน้ำหนัก" class="icon-image">
+				<h3>ลดน้ำหนัก</h3>
+			</a>
+
+			<a class="icon-card icon-link" href="nutrition.html" aria-label="หลักการกินอาหาร">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMOvgzdtH8aUjmx6GhgguIurelXM4ielAbEQ&s" alt="หลักการกิน" class="icon-image">
+				<h3>หลักการกิน</h3>
+			</a>
+		</section>
+
+		<!-- พื้นที่ตกแต่ง (SVG ถูกจัดสไตล์จาก CSS) -->
+		<div class="decorations" aria-hidden="true">
+			<!-- เบื้องต้นวาง 2 ชิ้นเป็นตัวอย่าง (SVG inline เล็ก ๆ) -->
+			<svg class="decor decor-1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+				<defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#a7f3d0"/><stop offset="1" stop-color="#16a34a"/></linearGradient></defs>
+				<circle cx="60" cy="60" r="50" fill="url(#g1)" opacity="0.14"/>
+			</svg>
+
+			<svg class="decor decor-2" viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+				<defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#dcfce7"/><stop offset="1" stop-color="#16a34a"/></linearGradient></defs>
+				<path d="M10 60 C30 10, 90 10, 110 60 L110 80 L10 80 Z" fill="url(#g2)" opacity="0.10"/>
+			</svg>
+		</div>
+
+		<form id="calcForm">
+			<label>
+				เพศ
+				<select id="sex">
+					<option value="male">ชาย</option>
+					<option value="female">หญิง</option>
+				</select>
+			</label>
+
+			<label>
+				ส่วนสูง (ซม.)
+				<input type="number" id="height" min="50" max="300" required />
+			</label>
+
+			<label>
+				น้ำหนักจริง (กก.) — ไม่บังคับ (ใช้เพื่อเปรียบเทียบ)
+				<input type="number" id="weight" step="0.1" min="1" />
+			</label>
+
+			<button type="submit">คำนวณ</button>
+		</form>
+
+		<div id="result" class="result" aria-live="polite">
+			<!-- ผลลัพธ์จะแสดงที่นี่ -->
+		</div>
+
+		<!-- เพิ่มส่วนข้อมูล BMI -->
+		<section class="bmi-info">
+			<div class="info-section">
+				<div class="section-icon">
+					<i class="fas fa-calculator"></i>
+				</div>
+				<div class="section-content">
+					<h2>ค่าดัชนีมวลกาย (BMI) คืออะไร?</h2>
+					<p>BMI (Body Mass Index) คือค่าดัชนีมวลกายที่คำนวณจากน้ำหนักและส่วนสูง ใช้ประเมินภาวะอ้วนและผอมในผู้ใหญ่ตั้งแต่อายุ 20 ปีขึ้นไป</p>
+				</div>
+			</div>
+
+			<div class="info-section calculation-box">
+				<div class="section-icon">
+					<i class="fas fa-square-root-alt"></i>
+				</div>
+				<div class="section-content">
+					<h3>วิธีคำนวณ BMI</h3>
+					<div class="formula">
+						<p>BMI = น้ำหนักตัว (กิโลกรัม) / (ส่วนสูง (เมตร))²</p>
+						<div class="example">
+							<span>ตัวอย่าง:</span> น้ำหนัก 65 กิโลกรัม ส่วนสูง 1.70 เมตร
+							<br>BMI = 65 / (1.70)² = 22.49 กก./ม.²
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bmi-table">
+				<h3>เกณฑ์ค่า BMI สำหรับคนเอเชีย</h3>
+				<table>
+					<tr>
+						<th>BMI (กก./ม.²)</th>
+						<th>การแปลผล</th>
+						<th>ภาวะเสี่ยงต่อโรค</th>
+					</tr>
+					<tr>
+						<td>น้อยกว่า 18.5</td>
+						<td>น้ำหนักน้อย / ผอม</td>
+						<td>มากกว่าคนปกติ</td>
+					</tr>
+					<tr>
+						<td>18.5-22.9</td>
+						<td>ปกติ (สุขภาพดี)</td>
+						<td>เท่าคนปกติ</td>
+					</tr>
+					<tr>
+						<td>23.0-24.9</td>
+						<td>ท้วม / โรคอ้วนระดับ 1</td>
+						<td>อันตรายระดับ 1</td>
+					</tr>
+					<tr>
+						<td>25.0-29.9</td>
+						<td>อ้วน / โรคอ้วนระดับ 2</td>
+						<td>อันตรายระดับ 2</td>
+					</tr>
+					<tr>
+						<td>มากกว่า 30.0</td>
+						<td>อ้วนมาก / โรคอ้วนระดับ 3</td>
+						<td>อันตรายระดับ 3</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="recommendations-grid">
+				<div class="rec-card underweight">
+					<div class="card-icon"><i class="fas fa-arrow-down"></i></div>
+					<h4>BMI < 18.5</h4>
+					<h5>น้ำหนักน้อย</h5>
+					<ul>
+						<li>เพิ่มปริมาณอาหาร</li>
+						<li>เลือกอาหารมีประโยชน์</li>
+						<li>ออกกำลังกายสร้างกล้ามเนื้อ</li>
+					</ul>
+				</div>
+
+				<div class="rec-card normal">
+					<div class="card-icon"><i class="fas fa-check-circle"></i></div>
+					<h4>BMI 18.5-22.9</h4>
+					<h5>ปกติ (สุขภาพดี)</h5>
+					<ul>
+						<li>รักษาน้ำหนักให้คงที่</li>
+						<li>รับประทานอาหารให้ครบ 5 หมู่</li>
+						<li>ออกกำลังกายสม่ำเสมอ</li>
+					</ul>
+				</div>
+
+				<div class="rec-card overweight">
+					<div class="card-icon"><i class="fas fa-arrow-up"></i></div>
+					<h4>BMI ≥ 23</h4>
+					<h5>น้ำหนักเกิน</h5>
+					<ul>
+						<li>ควบคุมปริมาณอาหาร</li>
+						<li>เลือกอาหารที่มีไขมันต่ำ</li>
+						<li>ออกกำลังกายอย่างสม่ำเสมอ</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="info-section warning-box">
+				<div class="section-icon">
+					<i class="fas fa-exclamation-triangle"></i>
+				</div>
+				<div class="section-content">
+					<h3>ข้อควรระวัง</h3>
+					<ul>
+						<li>BMI ไม่เหมาะกับเด็ก สตรีมีครรภ์ นักกีฬา</li>
+						<li>ควรปรึกษาแพทย์หากมีข้อสงสัย</li>
+						<li>ลดน้ำหนักอย่างค่อยเป็นค่อยไป</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script src="script.js"></script>
+</body>
+</html>
